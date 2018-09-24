@@ -11,5 +11,8 @@ import {} from './arc.component'
 
 export class AppComponent
 {  
-    name = "Aditya Roy"
+    name;
+    games = ["Cricket", "Football", "Hockey", "Polo"];
+    constructor()
+    { this.name = "Aditya Roy";}
 }

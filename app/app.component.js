@@ -20,6 +20,7 @@ System.register(['@angular/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.games = ["Cricket", "Football", "Hockey", "Polo"];
                     this.name = "Aditya Roy";
                 }
                 AppComponent = __decorate([

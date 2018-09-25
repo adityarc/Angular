@@ -1,0 +1,69 @@
+import {Component, Input} from '@angular/core';
+
+@Component({
+     selector:'nested',
+     template: `<h1>{{b.id}}</h1> <br> <h2>{{b.name | uppercase}}</h2> <br> {{b.author}}   `,
+
+})
+export class NestedComponent
+{
+    @Input() b;
+}
+
+
+
+
+
+--------app module for nested component----
+
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { ArcComponent } from './arc.component';
+import { BookComponent } from './book.component';
+import { BookService } from './book.service';
+import { NestedComponent } from './nested.component';
+
+
+@NgModule({
+    imports:[
+        BrowserModule
+    ],
+    declarations:[
+        AppComponent, ArcComponent, BookComponent, NestedComponent
+    ],
+    providers:[
+        BookService
+    ],
+    bootstrap:[
+        BookComponent
+    ] 
+})
+export class AppModule{}
+
+
+
+
+----book component for nested component --------
+
+
+
+import {Component} from '@angular/core'
+import { BookService } from './book.service'
+import {} from './nested.component';
+@Component({
+    selector: 'book',
+    template: `
+    <h1>Book Component</h1>
+    <section>
+    <nested *ngFor='let bk of BOOKS' [b]="bk">
+    
+   </nested>
+   </section>`
+})
+
+export class BookComponent
+{
+   BOOKS= BookService.books;
+}

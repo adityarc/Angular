@@ -1,0 +1,92 @@
+---PricePipe-------
+import { Pipe } from '@angular/core';
+
+@Pipe({
+    name: 'price',
+
+})
+
+export class PricePipe
+{
+    transform(p) {
+        status='Economical'
+        if(p>200)
+        {
+            status='Expensive';
+        }
+        return status;
+    }
+}
+
+
+
+----char length pipe------
+import { Pipe } from '@angular/core';
+
+@Pipe({
+    name: 'length',
+
+})
+
+export class LengthPipe
+{
+    transform(p) {
+        status=p.length;
+        
+        return status;
+    }
+}
+
+
+
+----app module ----
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { ArcComponent } from './arc.component';
+import { BookComponent } from './book.component';
+import { BookService } from './book.service';
+import { NestedComponent } from './nested.component';
+import { PricePipe } from './price.pipe';
+import { LengthPipe } from './charlength.pipe';
+
+
+@NgModule({
+    imports:[
+        BrowserModule
+    ],
+    declarations:[
+        AppComponent, ArcComponent, BookComponent, NestedComponent, PricePipe, LengthPipe
+    ],
+    providers:[
+        BookService
+    ],
+    bootstrap:[
+        BookComponent
+    ] 
+})
+export class AppModule{}
+
+
+----On Click (Nested Component) --------
+
+import {Component, Input} from '@angular/core';
+
+
+@Component({
+     selector:'nested',
+     template: `<hr><h1>{{b.id}}</h1> <br> <h2>{{b.name | uppercase}}</h2> <br> {{b.author}} <br>{{b.author | length}} <br> {{b.price}}
+      <br>   {{b.price | price}}<br> <br> {{b.isfavourite}} <br> {{b.year}}
+      <button (click)="OnClick()"> click </button>
+      <hr/>
+       `,
+
+})
+export class NestedComponent
+{
+    @Input() b;
+    OnClick()
+    {
+        console.log("HELLO!!!");
+    }
+}

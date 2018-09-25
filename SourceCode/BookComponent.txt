@@ -1,0 +1,38 @@
+import {Component} from '@angular/core'
+
+@Component({
+    selector: 'book',
+    template: `<div *ngFor='let b of BOOKS'>
+    {{b.id}}{{b.name}}   
+   </div>`
+})
+
+export class BookComponent
+{
+    BOOKS=[
+        {
+            id:101,
+            name:"Ignited Minds",
+            author:"APJ Abdul Kalam",
+            price:150,
+            year:2003,
+            isFavourite:true
+        },
+        {
+            id:101,
+            name:"Wings of fire",
+            author:"APJ Abdul Kalam",
+            price:150,
+            year:2003,
+            isFavourite:false
+        },
+        {
+            id:101,
+            name:"Harry Potter",
+            author:"JK Rowling",
+            price:150,
+            year:2003,
+            isFavourite:true
+        }
+    ]
+}

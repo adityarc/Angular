@@ -1,0 +1,46 @@
+---CallService.Service.ts--------
+import {Component} from '@angular/core';
+import {BasicService} from './basic.service';
+
+@Component ({
+    selector: 'service',
+    template:`<table border='1'>
+    <tr><th>title</th><th>body</th>
+    </tr>
+    <tr *ngFor='let d of data'>
+    <td>{{d.title}}</td>
+    <td>{{d.body}}</td>
+    </tr>
+    </table>
+    `
+    
+})
+
+export class CallServiceComponent
+{
+    data:any;
+    constructor(private MyService:BasicService){
+        this.MyService.GetData()
+        .subscribe(posts => {this.data=posts; console.log(posts);});
+    }
+}
+
+
+----Basic.Service.ts--------
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class BasicService
+{
+    constructor(private http:Http)
+    {
+
+    }
+    GetData()
+    {
+        return this.http.get('https://jsonplaceholder.typicode.com/posts')
+        .map(result=>result.json());
+    }
+}

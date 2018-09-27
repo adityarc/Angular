@@ -1,0 +1,143 @@
+import { Component} from '@angular/core'
+import { FormGroup, FormControl } from '@angular/forms';
+
+@Component ({
+    selector:'mform',
+    template:`<form [formGroup]="form" (ngSubmit)="OnSubmit(form.value)">
+    <table>
+    <tr><td>Name</td>
+      <td><input type="text" name="name" formControlName="name"></td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td> <input type="radio" name="gender" value="male" checked formControlName="gender"> Male  <input type="radio" name="gender" value="female" formControlName="gender"> Female </td></tr>
+        <tr><td><input type="submit" value="submit"></td><td></td></tr>
+    
+    </table>
+    </form>`
+})
+
+export class ModelFormComponent
+{
+    form;
+    ngOnInit()
+    {
+        this.form=new FormGroup({
+        name:new FormControl("name"),
+        gender:new FormControl("gender")
+    });
+
+    
+
+    }
+
+    OnSubmit(data)
+    {
+        console.log(data)
+    }
+
+}
+
+
+-----template form ------
+
+
+
+import { Component } from '@angular/core'
+
+@Component({
+selector:'tform',
+template:`<form #myform="ngForm" (ngSubmit)="OnSubmit(myform.value)">
+<table>
+<tr><td>Name</td>
+  <td><input type="text" name="name" ngModel></td>
+</tr>
+<tr>
+    <td>Gender</td>
+    <td> <input type="radio" name="gender" value="male" checked ngModel> Male  <input type="radio" name="gender" value="female" ngModel> Female </td></tr>
+    <tr><td><input type="submit" value="submit"></td><td></td></tr>
+
+</table>
+</form>`
+})
+
+export class TemplateFormComponent
+{
+
+    OnSubmit(data)
+    {
+        console.log(data)
+    }
+}
+-------- app component html ----
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul>
+<mform></mform>
+
+  
+  
+-----app module-----
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { TemplateFormComponent } from './templateform.component';
+import { ModelFormComponent } from './modelform.component';
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent, ModelFormComponent // TemplateFormComponent,
+  ],
+  imports: [
+    BrowserModule, ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+----- app component ts ----
+
+
+
+import { Component } from '@angular/core'
+import {} from './arc.component'
+import {} from './book.component'
+
+@Component ({
+    selector: 'app',
+    templateUrl: 'app/app.component.html',
+    styleUrls: [ 'app/appstyle.css'
+        
+    ]
+})
+
+export class AppComponent
+{  
+    name;
+    games = ["Cricket", "Football", "Hockey", "Polo"];
+    constructor()
+    { this.name = "Aditya Roy";}
+}
+
